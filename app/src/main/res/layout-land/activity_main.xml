@@ -9,13 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.MainActivity">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <com.google.android.material.navigationrail.NavigationRailView
             android:id="@+id/btvw"
             app:menu="@menu/menu_navigation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="?actionBarSize"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/AppBar"
             app:layout_constraintStart_toStartOf="parent"
             android:background="#f1889f"/>
 
@@ -25,14 +25,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@id/btvw"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btvw"
             app:layout_constraintTop_toBottomOf="@id/AppBar"
             app:navGraph="@navigation/nav_graph"
-            tools:layout="@layout/fragment_favourites"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            />
+            tools:layout="@layout/fragment_favourites" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/AppBar"
