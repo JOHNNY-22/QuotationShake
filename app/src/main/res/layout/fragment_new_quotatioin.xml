@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
-        android:id="@+id/tvnewquatation"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/get_a_new_quotation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:src="@drawable/baseline_refresh_24"
+        android:layout_gravity="bottom|end">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+   <com.google.android.material.textview.MaterialTextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       tools:ignore="MissingConstraints"
+       android:gravity="center"
+       android:justificationMode="inter_word"
+       android:textStyle="italic">
+   </com.google.android.material.textview.MaterialTextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
