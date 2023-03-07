@@ -9,4 +9,7 @@
     <string name="settings2">Settings</string>
     <string name="aboutd">About</string>
     <string name="info">QuatationShake by Juan Altes\n juaalgo7@inf.upv.es\n developed for DADM2023</string>
+    <string name="refresh">Hello %1s!,\n\nRefresh to get a new quotation\n\n(swipe down or options menu)</string>
+    <string name="refreshbutton">refreshbutton</string>
+    <string name="delete_all_quotations">Delete all quotations</string>
 </resources>
