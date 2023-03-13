@@ -1,5 +1,6 @@
 package dadm.juaalgo7.quotationshake.ui.favourites
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,7 +18,9 @@ import com.google.android.material.snackbar.Snackbar
 import dadm.juaalgo7.quotationshake.R
 import dadm.juaalgo7.quotationshake.databinding.FragmentFavouritesBinding
 import dadm.juaalgo7.quotationshake.databinding.FragmentNewQuotatioinBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavouritesFragment: Fragment(R.layout.fragment_favourites), DeleteAllDialogFragment.DeleteInterface,
     MenuProvider {
     private var _binding: FragmentFavouritesBinding? = null;
@@ -54,7 +57,12 @@ class FavouritesFragment: Fragment(R.layout.fragment_favourites), DeleteAllDialo
                    Snackbar.make(view, "No es posible mostar las citas de un autor anonimo", Snackbar.LENGTH_LONG).show()
                }
                 else {
-                   Intent(Intent.ACTION_VIEW, Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search=" + author))
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search=" + author)))
+                    } catch (e: ActivityNotFoundException) {
+                        Snackbar.make(view, "no es posible gestionar la acción solicitada", Snackbar.LENGTH_LONG).show()
+                    }
+
                }
             }
         })

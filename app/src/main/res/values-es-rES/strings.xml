@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuotationShake</string>
+    <string name="get_a_new_quotation">Obtener una cita</string>
+    <string name="favourite_quotation">Cita favorita</string>
+    <string name="about">Acerca De</string>
+    <string name="settings">Ajustes</string>
+    <string name="quatations">Citas</string>
+    <string name="favourite">Favorita</string>
+    <string name="settings2">Ajustes</string>
+    <string name="aboutd">"Acerca De "</string>
+    <string name="info">QuatationShake by Juan Altes  juaalgo7@inf.upv.es  developed for DADM2023</string>
+    <string name="refresh">Hola %1s!,  Actualiza para obtener una nueva cita (Desliza hacia abajooo o menu de opciones menu)</string>
+    <string name="refreshbutton">actaulizar</string>
+    <string name="delete_all_quotations">Borrar todas las citas</string>
+    <string name="no_Internt">No has conexión a Internet</string>
+</resources>

@@ -9,10 +9,13 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import com.google.android.material.snackbar.Snackbar
 import dadm.juaalgo7.quotationshake.R
 import dadm.juaalgo7.quotationshake.databinding.FragmentNewQuotatioinBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class NewQuotationFragment : Fragment(R.layout.fragment_new_quotatioin), MenuProvider{
     private val viewModel: NewQuotationViewModel by viewModels();
     private var _binding: FragmentNewQuotatioinBinding? = null;
@@ -38,6 +41,13 @@ class NewQuotationFragment : Fragment(R.layout.fragment_new_quotatioin), MenuPro
         viewModel.isButtonVisible.observe(viewLifecycleOwner) {
             binding.btnAddToFavourites.visibility = if (it) View.VISIBLE else View.GONE
         }
+        viewModel.areError.observe(viewLifecycleOwner) {
+           if (it != null) {
+               Snackbar.make(view, it.toString(), Snackbar.LENGTH_LONG).show()
+           }
+            viewModel.resetError()
+        }
+
         binding.swipeRefresh.setOnRefreshListener{
             viewModel.getNewQuotation()
         }
@@ -52,6 +62,8 @@ class NewQuotationFragment : Fragment(R.layout.fragment_new_quotatioin), MenuPro
         super.onDestroyView()
         _binding = null
     }
+
+
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
 

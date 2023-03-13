@@ -14,9 +14,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationBarView
 import dadm.juaalgo7.quotationshake.R
 import dadm.juaalgo7.quotationshake.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 lateinit var binding: ActivityMainBinding
 lateinit var navController: NavController
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MenuProvider{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,10 @@ class MainActivity : AppCompatActivity(), MenuProvider{
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        navController.navigate(R.id.aboutDialogFragment)
-        return true;
+        if (menuItem.itemId == R.id.aboutItem) {
+            navController.navigate(R.id.aboutDialogFragment)
+            return true;
+        }
+      return false
     }
 }
