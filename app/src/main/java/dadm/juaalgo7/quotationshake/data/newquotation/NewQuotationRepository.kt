@@ -5,5 +5,5 @@ import dadm.juaalgo7.quotationshake.ui.model.Quotation
 import retrofit2.Response
 
 interface NewQuotationRepository {
-    suspend fun getNewQuotation(): Result<Quotation>
+    suspend fun getNewQuotation(language: String): Result<Quotation>
 }

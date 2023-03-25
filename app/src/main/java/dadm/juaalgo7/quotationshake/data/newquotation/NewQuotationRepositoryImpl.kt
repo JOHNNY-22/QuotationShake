@@ -10,7 +10,8 @@ class NewQuotationRepositoryImpl @Inject constructor(private val DataSource: New
 
     override suspend fun getNewQuotation(): Result<Quotation> {
         return if (Conectivy.isConnectionAvailable()) {
-            DataSource.getQuotation(arrayOf("en", "ru", "xx").random()).toDomain()
+           val xxx =  DataSource.getQuotation(arrayOf("en", "ru", "xx").random())
+            xxx.toDomain()
         } else {
             Result.failure(exception = NoInternetException())
         }

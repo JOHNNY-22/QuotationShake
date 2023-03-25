@@ -13,4 +13,7 @@
     <string name="refreshbutton">refreshbutton</string>
     <string name="delete_all_quotations">Delete all quotations</string>
     <string name="no_Internt">No internet connection</string>
+    <string name="Usernname">Username</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="Lenguaje">Lenguage</string>
 </resources>

@@ -24,7 +24,7 @@ class NewQuotationDataSourceImpl @Inject constructor(retrofit: Retrofit): NewQuo
     }
 
     interface NewQuotationRetrofit {
-        @GET("api/1.0/?method=getQuote&format=json&")
+        @GET("api/1.0/?method=getQuote&format=json")
         suspend fun getQuotation(@Query("lang") lenguaje: String): Response<QuotationDto>
     }
 }

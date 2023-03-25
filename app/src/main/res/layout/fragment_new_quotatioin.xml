@@ -21,7 +21,8 @@
                 android:contentDescription="@string/refreshbutton"
                 android:src="@drawable/baseline_favorite_24"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility = "invisible">
             </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
             <com.google.android.material.textview.MaterialTextView

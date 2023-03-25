@@ -14,4 +14,7 @@
     <string name="refreshbutton">actaulizar</string>
     <string name="delete_all_quotations">Borrar todas las citas</string>
     <string name="no_Internt">No has conexión a Internet</string>
+    <string name="Usernname">Nombre de usuario</string>
+    <string name="enter_your_name">Introduce tu nombre</string>
+    <string name="Lenguaje">Lenguaje</string>
 </resources>

@@ -28,7 +28,7 @@ class NewQuotationFragment : Fragment(R.layout.fragment_new_quotatioin), MenuPro
             binding.tvWelcome.text = getString(R.string.refresh, it)
         }
 
-        viewModel.Quotation.observe(viewLifecycleOwner) { it.author
+        viewModel.Quotation.observe(viewLifecycleOwner) {
             binding.tvQuotation.text = it?.text
             binding.tvAuthor.text = it?.author ?: "anonymous"
         }
@@ -43,9 +43,10 @@ class NewQuotationFragment : Fragment(R.layout.fragment_new_quotatioin), MenuPro
         }
         viewModel.areError.observe(viewLifecycleOwner) {
            if (it != null) {
-               Snackbar.make(view, it.toString(), Snackbar.LENGTH_LONG).show()
+               Snackbar.make(view, "error", Snackbar.LENGTH_LONG).show()
+               viewModel.resetError()
            }
-            viewModel.resetError()
+
         }
 
         binding.swipeRefresh.setOnRefreshListener{

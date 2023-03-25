@@ -9,14 +9,13 @@ import dadm.juaalgo7.quotationshake.databinding.QuotationItemBinding
 import dadm.juaalgo7.quotationshake.ui.model.Quotation
 
 class QuotationListAdapter(private val itemclicked: ItemClicked): ListAdapter<Quotation, QuotationListAdapter.ViewHolder>(QuotationDiff) {
-        class ViewHolder (binding: QuotationItemBinding, itemclicked: ItemClicked): RecyclerView.ViewHolder(binding.root) {
+        class ViewHolder (private val binding: QuotationItemBinding, itemclicked: ItemClicked): RecyclerView.ViewHolder(binding.root) {
             init {
                 binding.root.setOnClickListener {
                     itemclicked.onClick(binding.tvFavAuthor.text.toString())
                 }
             }
-            private var _binding: QuotationItemBinding? = null
-            private val binding get() = _binding!!
+
             fun bind(quotation: Quotation) {
                 binding.tvFavQuotation.text = quotation.text;
                 binding.tvFavAuthor.text = quotation.author;
@@ -25,11 +24,11 @@ class QuotationListAdapter(private val itemclicked: ItemClicked): ListAdapter<Qu
     object
     QuotationDiff : DiffUtil.ItemCallback<Quotation>() {
         override fun areItemsTheSame(oldItem: Quotation, newItem: Quotation): Boolean {
-            TODO("Not yet implemented")
+          return oldItem.id == newItem.id;
         }
 
         override fun areContentsTheSame(oldItem: Quotation, newItem: Quotation): Boolean {
-            TODO("Not yet implemented")
+            return oldItem == newItem;
         }
     }
 

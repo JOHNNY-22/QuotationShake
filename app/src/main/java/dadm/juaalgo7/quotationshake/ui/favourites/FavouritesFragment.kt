@@ -66,12 +66,17 @@ class FavouritesFragment: Fragment(R.layout.fragment_favourites), DeleteAllDialo
                }
             }
         })
+        binding.recyclerView.adapter = adapter
         viewModel.favQuotations?.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
         requireActivity().addMenuProvider(this,
             viewLifecycleOwner, Lifecycle.State.RESUMED)
-        requireActivity().invalidateMenu()
+
+        viewModel.isDeleteAllVisible.observe(viewLifecycleOwner) {
+            requireActivity().invalidateMenu()
+        }
+
 
         touchHelper.attachToRecyclerView(binding.recyclerView)
     }

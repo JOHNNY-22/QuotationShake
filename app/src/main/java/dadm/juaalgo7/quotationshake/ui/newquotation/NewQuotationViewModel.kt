@@ -1,7 +1,10 @@
 package dadm.juaalgo7.quotationshake.ui.newquotation
 
+import android.util.Log
 import androidx.lifecycle.*
-import dadm.juaalgo7.quotationshake.data.newquotation.NewQuotationRepository
+import dadm.juaalgo7.quotationshake.data.favourites.FavouritesRepository
+import dadm.juaalgo7.quotationshake.data.newquotation.NewQuotationManager
+import dadm.juaalgo7.quotationshake.data.settings.SettingsRepository
 import dadm.juaalgo7.quotationshake.ui.model.Quotation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -10,11 +13,11 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class NewQuotationViewModel @Inject constructor(private val NewQuotationRepository: NewQuotationRepository) : ViewModel(){
+class NewQuotationViewModel @Inject constructor(private val NewQuotationManager: NewQuotationManager, settingsRepository: SettingsRepository, private val FavouritesRepository: FavouritesRepository) : ViewModel(){
 
-    private val _userName: MutableLiveData<String> = getUsername();
-    val userName: LiveData<String>
-        get() = _userName;
+
+    val userName: LiveData<String> = settingsRepository.getUsername().asLiveData();
+
 
     fun getUsername(): MutableLiveData<String> {
         return MutableLiveData(setOf("Alice", "Bob", "Charlie", "David", "Emma").random())
@@ -28,11 +31,15 @@ class NewQuotationViewModel @Inject constructor(private val NewQuotationReposito
     val isRefreshing: LiveData<Boolean>
     get() = _isRefreshing;
 
-    val isGreetingsVisible = Quotation.map { it == null };
+    val isGreetingsVisible = Quotation.map { it.id.isEmpty()};
 
-    private val _isButtonVisible = MutableLiveData(false);
-    val isButtonVisible: LiveData<Boolean>
-    get() = _isButtonVisible;
+
+    val isAddToFavouritesVisible = Quotation.switchMap() { newQuotation ->
+        FavouritesRepository.getQuotationById(newQuotation.id).asLiveData()
+    }.map() { favourite ->
+        favourite == null
+    }
+
 
     private val _areError = MutableLiveData<Throwable?>()
     val areError: LiveData<Throwable?>
@@ -44,13 +51,21 @@ class NewQuotationViewModel @Inject constructor(private val NewQuotationReposito
      fun getNewQuotation() {
          _isRefreshing.value = true
          viewModelScope.launch {
-             NewQuotationRepository.getNewQuotation().fold(onSuccess = { _Quatation.value = it },onFailure = { _areError.value = it })
+             NewQuotationManager.getNewQuotation()
+                 .fold(
+                     onSuccess = { _Quatation.value = it },
+                     onFailure = { _areError.value = it }
+                 )
          }
-         _isRefreshing.value = false
-         _isButtonVisible.value = true
 
-    }
+         _isRefreshing.value = false
+
+
+     }
     fun addToFavourites() {
-        _isButtonVisible.value = false
+        (viewModelScope.launch{
+            FavouritesRepository.addQuotation(Quotation.value!!)
+        })
+
     }
 }
